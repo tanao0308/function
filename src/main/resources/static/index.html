@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Functions</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 15px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Function List</h2>
+<table>
+    <thead>
+    <tr>
+        <th>FID</th>
+        <th>Title</th>
+        <th>Content</th>
+        <th>Create Time</th>
+        <th>Update Time</th>
+    </tr>
+    </thead>
+    <tbody id="functionTableBody">
+    <!-- Data will be inserted here -->
+    </tbody>
+</table>
+
+<script>
+    // Fetch data from the backend
+    fetch('/functions')
+        .then(response => response.json())
+        .then(data => {
+            // Get the table body element
+            const tableBody = document.getElementById('functionTableBody');
+
+            // Loop through the data and create table rows
+            data.forEach(function(item) {
+                const row = document.createElement('tr');
+
+                // Create table cells and append them to the row
+                const fidCell = document.createElement('td');
+                fidCell.textContent = item.fid;
+                row.appendChild(fidCell);
+
+                const titleCell = document.createElement('td');
+                titleCell.textContent = item.title;
+                row.appendChild(titleCell);
+
+                const contentCell = document.createElement('td');
+                contentCell.textContent = item.content;
+                row.appendChild(contentCell);
+
+                const createTimeCell = document.createElement('td');
+                createTimeCell.textContent = item.createTime;
+                row.appendChild(createTimeCell);
+
+                const updateTimeCell = document.createElement('td');
+                updateTimeCell.textContent = item.updateTime;
+                row.appendChild(updateTimeCell);
+
+                // Append the row to the table body
+                tableBody.appendChild(row);
+            });
+        })
+        .catch(error => console.error('Error fetching data:', error));
+</script>
+
+</body>
+</html>
