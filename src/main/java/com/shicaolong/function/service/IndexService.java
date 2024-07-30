@@ -16,4 +16,8 @@ public class IndexService {
     public List<Function> getAllFunction() {
         return indexDao.getAllFunction();
     }
+
+    public Function getFunctionByTitle(String title) {
+        return null; // TODO
+    }
 }

@@ -1,5 +1,6 @@
 package com.shicaolong.function;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
@@ -13,8 +14,8 @@ import org.springframework.context.annotation.ComponentScan;
 3. @ComponentScan
 	@ComponentScan 告诉Spring在当前包及其子包中查找组件、配置和服务。这样可以发现并注册被@Component, @Service, @Repository, @Controller等注解标注的类。
  */
-@SpringBootApplication
-//@ComponentScan("com.shicaolong.function")
+@SpringBootApplication(scanBasePackages = "com.shicaolong.function")
+@MapperScan("com.shicaolong.function.dao")
 public class FunctionApplication {
 
 	public static void main(String[] args) {

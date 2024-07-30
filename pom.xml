@@ -1,44 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<!--指定 POM 文件的模型版本。4.0.0 是当前 Maven 使用的标准版本。-->
 	<modelVersion>4.0.0</modelVersion>
+
+	<!--指定当前项目继承自的父 POM。-->
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>3.3.2</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
+
+	<!--当前项目的 groupId，用于唯一标识项目的组织或公司，通常是反向域名形式。-->
 	<groupId>com.shicaolong</groupId>
+
+	<!--当前项目的 artifactId，指定构件的名称，这里是 function。-->
 	<artifactId>function</artifactId>
+
+	<!--当前项目的版本号，0.0.1-SNAPSHOT 表示这是一个开发中的版本（即快照版本）。-->
 	<version>0.0.1-SNAPSHOT</version>
+
+	<!--项目的名称，这里是 function。-->
 	<name>function</name>
+
 	<description>Demo project for Spring Boot</description>
+
+	<!--用于指定项目的 URL 地址，通常是项目的主页或仓库链接。这里为空，表示没有指定 URL。-->
 	<url/>
+
+	<!--提供项目使用的许可证类型和相关信息，帮助用户了解使用和分发项目的法律条件。-->
 	<licenses>
 		<license/>
 	</licenses>
+
+	<!--developers 元素用于声明项目的开发者信息。-->
 	<developers>
 		<developer/>
 	</developers>
+
+	<!--提供源代码管理系统的连接信息，如 Git、Subversion 等，用于访问项目的源代码。-->
 	<scm>
 		<connection/>
 		<developerConnection/>
 		<tag/>
 		<url/>
 	</scm>
+
+	<!--允许在 POM 文件中定义和引用属性，通常用于配置项目的构建参数，如 Java 版本、编译器选项等。-->
 	<properties>
 		<java.version>17</java.version>
 	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
+		<!-- Thymeleaf 依赖 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+
+		<!-- MySQL 数据库驱动 -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>8.0.33</version>
+			<scope>runtime</scope>
 		</dependency>
 
 		<dependency>
@@ -49,9 +82,9 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.mybatis</groupId>
-			<artifactId>mybatis</artifactId>
-			<version>3.5.9</version>
+			<groupId>org.mybatis.spring.boot</groupId>
+			<artifactId>mybatis-spring-boot-starter</artifactId>
+			<version>3.0.3</version> <!-- 使用与你的项目兼容的版本 -->
 		</dependency>
 	</dependencies>
 
