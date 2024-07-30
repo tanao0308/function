@@ -2,9 +2,18 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.shicaolong.dao.IndexDao">
+<mapper namespace="com.shicaolong.function.dao.IndexDao">
 
-    <select id="getAllFunction" resultType="Function">
+
+    <resultMap id="function" type="Function">
+        <id property="fid" column="fid"/>
+        <result property="title" column="title"/>
+        <result property="content" column="content"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+    </resultMap>
+
+    <select id="getAllFunction" resultType="com.shicaolong.function.pojo.Function">
         select * from functions;
     </select>
 
