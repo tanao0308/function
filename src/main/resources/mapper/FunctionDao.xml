@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shicaolong.function.dao.FunctionDao">
+
+    <!-- 映射查询所有 Functions -->
+    <select id="getAllFunctions" resultType="com.shicaolong.function.pojo.Function">
+        SELECT * FROM functions;
+    </select>
+
+    <!-- 映射通过 ID 查询 Function -->
+    <select id="getFunctionById" parameterType="long" resultType="com.shicaolong.function.pojo.Function">
+        SELECT * FROM functions WHERE fid = #{id};
+    </select>
+
+    <!-- 映射通过 Title 查询 Function -->
+    <select id="getFunctionByTitle" parameterType="string" resultType="com.shicaolong.function.pojo.Function">
+        SELECT * FROM functions WHERE title = #{title} LIMIT 1;
+    </select>
+
+    <!-- 映射创建一个新的 Function -->
+    <insert id="createFunction" parameterType="com.shicaolong.function.pojo.Function" useGeneratedKeys="true" keyProperty="fid">
+        INSERT INTO functions (title, content)
+        VALUES (#{title}, #{content});
+    </insert>
+
+</mapper>

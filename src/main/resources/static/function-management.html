@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Function API Interaction</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <h1>Function API Interaction</h1>
+
+    <!-- Get all functions -->
+    <div class="mb-4">
+        <h2>Get All Functions</h2>
+        <button id="getAllFunctions" class="btn btn-primary">Get All Functions</button>
+        <pre id="allFunctionsResult"></pre>
+    </div>
+
+    <!-- Get function by ID -->
+    <div class="mb-4">
+        <h2>Get Function by ID</h2>
+        <form id="getByIdForm">
+            <div class="form-group">
+                <label for="functionId">Function ID</label>
+                <input type="text" id="functionId" class="form-control" placeholder="Enter function ID">
+            </div>
+            <button type="submit" class="btn btn-primary">Get Function</button>
+        </form>
+        <pre id="functionByIdResult"></pre>
+    </div>
+
+    <!-- Get function by title -->
+    <div class="mb-4">
+        <h2>Get Function by Title</h2>
+        <form id="getByTitleForm">
+            <div class="form-group">
+                <label for="functionTitle">Function Title</label>
+                <input type="text" id="functionTitle" class="form-control" placeholder="Enter function title">
+            </div>
+            <button type="submit" class="btn btn-primary">Get Function</button>
+        </form>
+        <pre id="functionByTitleResult"></pre>
+    </div>
+
+    <!-- Create a new function -->
+    <div class="mb-4">
+        <h2>Create New Function</h2>
+        <form id="createFunctionForm">
+            <div class="form-group">
+                <label for="newFunctionTitle">Function Title</label>
+                <input type="text" id="newFunctionTitle" class="form-control" placeholder="Enter function title">
+            </div>
+            <div class="form-group">
+                <label for="newFunctionContent">Function Content</label>
+                <textarea id="newFunctionContent" class="form-control" rows="3" placeholder="Enter function content"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Create Function</button>
+        </form>
+        <pre id="createFunctionResult"></pre>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+    $(document).ready(function() {
+        // Get all functions
+        $('#getAllFunctions').on('click', function() {
+            $.get('/functions/', function(data) {
+                $('#allFunctionsResult').text(JSON.stringify(data, null, 2));
+            }).fail(function() {
+                $('#allFunctionsResult').text('Error: Could not fetch functions');
+            });
+        });
+
+        // Get function by ID
+        $('#getByIdForm').on('submit', function(e) {
+            e.preventDefault();
+            var id = $('#functionId').val();
+            var url = '/functions/' + id;
+
+            $.get(url, function(data) {
+                $('#functionByIdResult').text(JSON.stringify(data, null, 2));
+            }).fail(function() {
+                $('#functionByIdResult').text('Error: Function not found');
+            });
+        });
+
+        // Get function by title
+        $('#getByTitleForm').on('submit', function(e) {
+            e.preventDefault();
+            var title = $('#functionTitle').val();
+            var url = '/functions/title/' + title;
+
+            $.get(url, function(data) {
+                $('#functionByTitleResult').text(JSON.stringify(data, null, 2));
+            }).fail(function() {
+                $('#functionByTitleResult').text('Error: Function not found');
+            });
+        });
+
+        // Create a new function
+        $('#createFunctionForm').on('submit', function(e) {
+            e.preventDefault();
+            var title = $('#newFunctionTitle').val();
+            var content = $('#newFunctionContent').val();
+            var newFunction = {
+                title: title,
+                content: content
+            };
+
+            $.ajax({
+                url: '/functions/',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(newFunction),
+                success: function(data) {
+                    $('#createFunctionResult').text('Created Function: ' + JSON.stringify(data, null, 2));
+                },
+                error: function() {
+                    $('#createFunctionResult').text('Error: Could not create function');
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>

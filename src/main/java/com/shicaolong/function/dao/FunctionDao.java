@@ -8,8 +8,13 @@ import java.util.List;
 
 @Mapper
 @Repository
-public interface IndexDao {
-    public List<Function> getAllFunction();
+public interface FunctionDao {
+
+    public List<Function> getAllFunctions();
+
+    public Function getFunctionById(Long id);
 
     public Function getFunctionByTitle(String title);
+
+    public void createFunction(Function function);
 }
