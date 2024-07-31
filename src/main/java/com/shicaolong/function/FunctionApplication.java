@@ -12,7 +12,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 3. @ComponentScan
 	@ComponentScan 告诉Spring在当前包及其子包中查找组件、配置和服务。这样可以发现并注册被@Component, @Service, @Repository, @Controller等注解标注的类。
  */
-@SpringBootApplication(scanBasePackages = "com.shicaolong.function")
+@SpringBootApplication
 public class FunctionApplication {
 
 	public static void main(String[] args) {
