@@ -18,4 +18,4 @@ spring:            #全局配置
 
 mybatis:
   type-aliases-package: com.shicalong.function.pojo   #设置别名
-  mapper-locations: classpath:mapper/*.xml   #ָ指定myBatis的核心配置文件与Mapper映射文件
+  mapper-locations: classpath:mapper/*.xml   # 指定myBatis的核心配置文件与Mapper映射文件

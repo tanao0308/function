@@ -86,6 +86,20 @@
 			<artifactId>mybatis-spring-boot-starter</artifactId>
 			<version>3.0.3</version> <!-- 使用与你的项目兼容的版本 -->
 		</dependency>
+
+		<!-- SLF4J API -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>2.0.0</version>
+		</dependency>
+
+		<!-- Logback (SLF4J 实现) -->
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>1.4.5</version>
+		</dependency>
 	</dependencies>
 
 	<build>
