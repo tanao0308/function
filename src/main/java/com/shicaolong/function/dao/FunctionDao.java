@@ -17,4 +17,6 @@ public interface FunctionDao {
     public Function getFunctionByTitle(String title);
 
     public void createFunction(Function function);
+
+    public int deleteFunction(Long id);
 }

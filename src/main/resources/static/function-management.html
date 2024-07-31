@@ -59,6 +59,16 @@
         </form>
         <pre id="createFunctionResult"></pre>
     </div>
+
+    <div class="mb-4">
+        <h2>Delete Function</h2>
+        <form id="deleteFunctionForm">
+            <label for="functionDeleteId">Function ID:</label>
+            <input type="text" id="functionDeleteId" name="functionDeleteId" required>
+            <button type="submit">Delete</button>
+        </form>
+        <p id="deleteResult"></p>
+    </div>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -120,6 +130,29 @@
                 error: function() {
                     $('#createFunctionResult').text('Error: Could not create function');
                 }
+            });
+        });
+
+        // Delete a function by id
+        $(document).ready(function() {
+            $('#deleteFunctionForm').on('submit', function(e) {
+                e.preventDefault();
+                var id = $('#functionDeleteId').val();
+
+                $.ajax({
+                    url: '/functions/' + id,
+                    type: 'DELETE',
+                    success: function(response) {
+                        if (response) {
+                            $('#deleteResult').text('Function deleted successfully.');
+                        } else {
+                            $('#deleteResult').text('Failed to delete function.');
+                        }
+                    },
+                    error: function() {
+                        $('#deleteResult').text('Error: Function not found.');
+                    }
+                });
             });
         });
     });

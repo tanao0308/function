@@ -22,41 +22,40 @@ public class FunctionController {
     // Get all functions
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public List<Function> getAllFunctions() {
-        return functionService.getAllFunctions();
+        List<Function> result = functionService.getAllFunctions();
+        log.info("result={}", result);
+        return result;
     }
 
     // Get a function by ID
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public Function getFunctionById(@PathVariable("id") Long id) {
-        log.info("id={}", id);
-        log.info("function={}", functionService.getFunctionById(id));
-        return functionService.getFunctionById(id);
+        Function result = functionService.getFunctionById(id);
+        log.info("id={}, result={}", id, result);
+        return result;
     }
 
     // Get a function by title
     @RequestMapping(value = "/title/{title}", method = RequestMethod.GET)
     public Function getFunctionByTitle(@PathVariable("title") String title) {
-        log.info("title={}", title);
-        log.info("function={}", functionService.getFunctionByTitle(title));
-        return functionService.getFunctionByTitle(title);
+        Function result = functionService.getFunctionByTitle(title);
+        log.info("title={}, result={}", title, result);
+        return result;
     }
 
     // Create a new function
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public Function createFunction(@RequestBody Function function) {
-        log.info("function={}", function);
-        return functionService.createFunction(function);
+        Function result = functionService.createFunction(function);
+        log.info("function={}, result={}", function, result);
+        return result;
     }
 
-//    // Update a function
-//    @PutMapping("/{id}")
-//    public Function updateFunction(@PathVariable("id") Long id, @RequestBody Function function) {
-//        return functionService.updateFunction(id, function);
-//    }
-
-//    // Delete a function
-//    @DeleteMapping("/{id}")
-//    public void deleteFunction(@PathVariable("id") Long id) {
-//        functionService.deleteFunction(id);
-//    }
+    // Delete a function
+    @DeleteMapping("/{id}")
+    public boolean deleteFunction(@PathVariable("id") Long id) {
+        boolean result = functionService.deleteFunction(id);
+        log.info("id={}, result={}", id, result);
+        return result;
+    }
 }

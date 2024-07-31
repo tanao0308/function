@@ -36,4 +36,9 @@
         VALUES (#{title}, #{content});
     </insert>
 
+    <!-- 映射创建一个新的 Function -->
+    <delete id="deleteFunction" parameterType="long">
+        DELETE FROM functions WHERE fid = #{id};
+    </delete>
+
 </mapper>

@@ -27,6 +27,11 @@ public class FunctionService {
 
     public Function createFunction(Function function) {
         functionDao.createFunction(function);
-        return functionDao.getFunctionByTitle(function.getTitle());
+        function = functionDao.getFunctionById(function.getFid());
+        return function;
+    }
+
+    public boolean deleteFunction(Long id) {
+        return functionDao.deleteFunction(id) > 0;
     }
 }
