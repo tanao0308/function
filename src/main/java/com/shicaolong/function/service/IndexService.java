@@ -18,6 +18,6 @@ public class IndexService {
     }
 
     public Function getFunctionByTitle(String title) {
-        return null; // TODO
+        return indexDao.getFunctionByTitle(title);
     }
 }

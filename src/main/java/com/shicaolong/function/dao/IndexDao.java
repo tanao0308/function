@@ -10,4 +10,6 @@ import java.util.List;
 @Repository
 public interface IndexDao {
     public List<Function> getAllFunction();
+
+    public Function getFunctionByTitle(String title);
 }

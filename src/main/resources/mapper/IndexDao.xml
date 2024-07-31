@@ -17,4 +17,12 @@
         FROM functions
     </select>
 
+    <!--在 select 中使用 resultMap 时，你不一定要返回全部元素。resultMap 定义了如何将查询结果映射到 Java 对象，但你可以根
+    据实际需要在 SQL 查询中选择返回的列。即使在查询中只返回部分列，resultMap 也会正确地将这些列映射到 Java 对象的属性上。-->
+    <select id="getFunctionByTitle" parameterType="string" resultMap="functionMap">
+        SELECT title, content, create_time, update_time
+        FROM functions
+        WHERE title = #{title}
+    </select>
+
 </mapper>

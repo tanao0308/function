@@ -29,15 +29,23 @@ public class IndexController {
                 contentList.add(element.getContent());
             }
         }
-        contentList.add("hello");
         // 将列表添加到模型中，并命名为 contentList
         model.addAttribute("contentList", contentList);
         // 返回视图名 allFunction，视图解析器会查找 allFunction.html 模板文件。
         return "allFunction";
     }
 
-    // 用于将 HTTP GET 请求映射到处理方法 searchFunctionByTitle 上。
     @GetMapping("/search")
+    public String search() {
+        return "search";
+    }
+
+    /*
+    使用例：
+    浏览器输入 http://localhost:8080/result?title=Function%20A
+     */
+    // 用于将 HTTP GET 请求映射到处理方法 searchFunctionByTitle 上。
+    @GetMapping("/result")
     // @RequestParam("title") String title：这是方法参数，用于接收来自请求的 title 参数。Spring MVC 会将请求参数 title 的值赋给这个变量。
     // Model model：这是一个 Spring MVC 提供的接口，用于在控制器中传递数据到视图。
     public String searchFunctionByTitle(@RequestParam("title") String title, Model model) {
