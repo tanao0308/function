@@ -94,6 +94,12 @@
 			<artifactId>logback-classic</artifactId>
 			<version>1.4.5</version>
 		</dependency>
+
+		<!--加密配置-->
+<!--		<dependency>-->
+<!--			<groupId>org.springframework.boot</groupId>-->
+<!--			<artifactId>spring-boot-starter-security</artifactId>-->
+<!--		</dependency>-->
 	</dependencies>
 
 	<build>

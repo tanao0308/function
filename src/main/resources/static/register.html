@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <script>
+        async function register(event) {
+            event.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            const response = await fetch('/user/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ username, password })
+            });
+
+            const result = await response.text();
+
+            if (response.ok) {
+                alert(result);
+                // 在注册成功后执行进一步操作，例如跳转到登录页面
+                if (result === 'User registered successfully') {
+                    window.location.href = '/login.html';
+                }
+            } else {
+                alert('Registration failed: ' + result);
+            }
+        }
+    </script>
+</head>
+<body>
+<h2>Register</h2>
+<form onsubmit="register(event)">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required>
+    <br>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required>
+    <br>
+    <button type="submit">Register</button>
+</form>
+</body>
+</html>
