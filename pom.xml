@@ -6,11 +6,11 @@
 	<!--指定 POM 文件的模型版本。4.0.0 是当前 Maven 使用的标准版本。-->
 	<modelVersion>4.0.0</modelVersion>
 
-	<!--指定当前项目继承自的父 POM。-->
+	<!--指定当前项目继承自的父 POM，即 spring boot 的版本号-->
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.3.2</version>
+		<version>3.1.12</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
@@ -67,13 +67,14 @@
 			<version>8.0.33</version>
 			<scope>runtime</scope>
 		</dependency>
-
+		<!--mybatis-plus-->
 		<dependency>
-			<groupId>org.mybatis.spring.boot</groupId>
-			<artifactId>mybatis-spring-boot-starter</artifactId>
-			<version>3.0.3</version> <!-- 使用与你的项目兼容的版本 -->
+			<groupId>com.baomidou</groupId>
+			<artifactId>mybatis-plus-boot-starter</artifactId>
+			<version>3.5.7</version>
 		</dependency>
 
+		<!--lombok-->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
@@ -87,7 +88,6 @@
 			<artifactId>slf4j-api</artifactId>
 			<version>2.0.0</version>
 		</dependency>
-
 		<!-- Logback (SLF4J 实现) -->
 		<dependency>
 			<groupId>ch.qos.logback</groupId>

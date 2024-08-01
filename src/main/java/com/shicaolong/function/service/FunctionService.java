@@ -1,6 +1,7 @@
 package com.shicaolong.function.service;
 
-import com.shicaolong.function.dao.FunctionDao;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.shicaolong.function.mapper.FunctionMapper;
 import com.shicaolong.function.pojo.Function;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,27 +12,28 @@ import java.util.List;
 public class FunctionService {
 
     @Autowired
-    private FunctionDao functionDao;
+    private FunctionMapper functionMapper;
 
     public List<Function> getAllFunctions() {
-        return functionDao.getAllFunctions();
+        return functionMapper.selectList(null);
     }
 
     public Function getFunctionById(Long id) {
-        return functionDao.getFunctionById(id);
+        return functionMapper.selectById(id);
     }
 
     public Function getFunctionByTitle(String title) {
-        return functionDao.getFunctionByTitle(title);
+        QueryWrapper<Function> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("title", title);
+        return functionMapper.selectList(queryWrapper).get(0);
     }
 
     public Function createFunction(Function function) {
-        functionDao.createFunction(function);
-        function = functionDao.getFunctionById(function.getFid());
-        return function;
+        functionMapper.insert(function);
+        return functionMapper.selectById(function.getFid());
     }
 
     public boolean deleteFunction(Long id) {
-        return functionDao.deleteFunction(id) > 0;
+        return functionMapper.deleteById(id) > 0;
     }
 }

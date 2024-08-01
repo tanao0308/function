@@ -1,10 +1,4 @@
 spring:            #全局配置
-  thymeleaf:
-    prefix: classpath:/templates/  # 模板文件的路径前缀
-    suffix: .html                  # 模板文件的后缀
-    mode: HTML5                    # 模板模式，通常设置为 HTML5
-    encoding: UTF-8                # 模板文件的编码
-    cache: false                   # 是否缓存模板，开发环境中通常设置为 false
   datasource:
     #    jdbc:mysql://localhost:3306/function：这是 JDBC 连接 URL，指定了数据库的协议（jdbc:mysql）、主机名（localhost）、端口号（3306），以及数据库名称（blog）。
     #    serverTimezone=GMT%2B8：指定数据库服务器的时区为 GMT+8（即中国标准时间）。%2B 是 URL 编码中的加号（+）。
@@ -16,6 +10,7 @@ spring:            #全局配置
     username: root
     password: ta030801
 
-mybatis:
-  type-aliases-package: com.shicalong.function.pojo   #设置别名
-  mapper-locations: classpath:mapper/*.xml   # 指定myBatis的核心配置文件与Mapper映射文件
+mybatis-plus:
+  global-config:
+    db-config:
+      id-type: auto
